@@ -1,7 +1,7 @@
 const firstNameInput = document.querySelector("#first-name-input");
 const lastNameInput = document.querySelector("#last-name-input");
 const emailInput = document.querySelector("#email-input");
-const passwordInput = document.querySelector("#passworld-input");
+const passwordInput = document.querySelector("#password-input");
 const submitBtn = document.querySelector("#submit-btn");
 
 //simple email validation
@@ -12,8 +12,8 @@ function validateEmail(email) {
 }
 
 firstNameInput.onkeyup = () => {
-  firstNameInput.classList.remove("is-vallid");
-  firstNameInput.classList.remove("is-invallid");
+  firstNameInput.classList.remove("is-valid");
+  firstNameInput.classList.remove("is-invalid");
 };
 lastNameInput.onkeyup = () => {
   lastNameInput.classList.remove("is-valid");
@@ -28,11 +28,11 @@ passwordInput.onkeyup = () => {
   passwordInput.classList.remove("is-invalid");
 };
 
-summitBtn.onclick = () => {
-  let isFirstNameok = false;
-  let isLastNameok = false;
-  let isEmailok = false;
-  let isPasswordok = false;
+submitBtn.onclick = () => {
+  isFirstNameok = false;
+  isLastNameok = false;
+  isEmailok = false;
+  isPasswordok = false;
 
   if (firstNameInput.value === "") {
     firstNameInput.classList.add("is-invalid");
@@ -48,7 +48,7 @@ summitBtn.onclick = () => {
     isLastNameok = true;
   }
 
-  if (emailInput.value === "") {
+  if (validateEmail(emailInput.value) === false) {
     emailInput.classList.add("is-invalid");
   } else {
     emailInput.classList.add("is-valid");
@@ -57,20 +57,12 @@ summitBtn.onclick = () => {
 
   if (passwordInput.value.length >= 6) {
     passwordInput.classList.add("is-valid");
+    isPasswordok = true;
   } else {
     passwordInput.classList.add("is-invalid");
   }
 
-  if (isFirstNameok) {
-    alert("Registered successfully");
-  }
-  if (isLastNameok) {
-    alert("Registered successfully");
-  }
-  if (isEmailok) {
-    alert("Registered successfully");
-  }
-  if (isPasswordok) {
+  if (isFirstNameok && isLastNameok && isEmailok && isPasswordok) {
     alert("Registered successfully");
   }
 };
